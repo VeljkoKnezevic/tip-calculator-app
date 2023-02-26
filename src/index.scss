@@ -1,0 +1,22 @@
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-family: "Space Mono", monospace;
+  background: #c5e4e7;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
