@@ -1,117 +1,110 @@
 import "./App.scss";
 import Logo from "../images/logo.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Header from "./components/Header";
+import Bill from "./components/Bill";
+import Tip from "./components/Tip";
+import People from "./components/People";
+import Stats from "./components/Stats";
 
 function App() {
   const [bill, setBill] = useState(0);
   const [tip, setTip] = useState(0);
   const [people, setPeople] = useState(0);
+  const [tipAmount, setTipAmount] = useState(0);
+  const [total, setTotal] = useState(0);
 
   const handleButton = (e) => {
     e.preventDefault();
-    setTip(parseInt(e.target.value));
+    setTip(parseFloat(e.target.value));
     e.target.parentElement.lastChild.value = "";
   };
 
   const handleInputs = (e) => {
     const input = e.target;
-    let inputValue = parseInt(input.value);
+    let inputValue = parseFloat(input.value);
+
+    //Universal styling
+    if (inputValue === 0) {
+      inputValue = "";
+      input.style.borderColor = "#E17457";
+    } else {
+      input.style.borderColor = "#26c2ae";
+    }
+
+    //Fixes NaN
+    if (isNaN(inputValue)) {
+      inputValue = "";
+    }
 
     if (input.classList.contains("bill-input")) {
+      let errorBill = e.target.parentElement.children[0].children[1];
+
       if (inputValue === 0) {
-        inputValue = "";
+        errorBill.style.display = "block";
+      } else {
+        errorBill.style.display = "none";
       }
       setBill(inputValue);
     }
 
     if (input.classList.contains("custom")) {
+      if (inputValue === "") {
+        input.style.borderColor = "transparent";
+      }
+
       if (inputValue === 0) {
         inputValue = "";
+        input.style.borderColor = "#E17457";
+      } else {
+        input.style.borderColor = "#26c2ae";
       }
+
       setTip(inputValue);
     }
 
     if (input.classList.contains("people-input")) {
-      let error = e.target.parentElement.children[4];
+      let errorPeople = e.target.parentElement.children[4].children[1];
+
       if (inputValue === 0) {
-        inputValue = "";
-        input.style.borderColor = "#E17457";
-        error.style.display = "block";
-        //Srediti
+        errorPeople.style.display = "block";
+        errorPeople.style.marginTop = "40px";
+      } else {
+        errorPeople.style.display = "none";
       }
+
       setPeople(inputValue);
     }
   };
 
+  const reset = (e) => {
+    setBill(0);
+    setPeople(0);
+    setTip(0);
+  };
+
+  useEffect(() => {
+    const tipAmountPerPerson = ((tip / 100) * bill) / people;
+    const totalPerPerson = bill / people + tipAmountPerPerson;
+    setTipAmount(Math.round(tipAmountPerPerson * 100) / 100);
+    setTotal(Math.round(totalPerPerson * 100) / 100);
+  }, [bill, tip, people]);
+
   return (
     <>
-      <header>
-        <h1>
-          <img src={Logo} alt="Splitter logo" />
-        </h1>
-      </header>
+      <Header Logo={Logo} />
       <main>
         <form>
           <div className="controls">
-            <h2 className="bill">Bill</h2>
-            <input
-              className="bill-input"
-              onChange={handleInputs}
-              value={bill === 0 ? "" : bill}
-              placeholder="0"
-              type="number"
+            <Bill handleInputs={handleInputs} bill={bill} />
+            <Tip
+              tip={tip}
+              handleInputs={handleInputs}
+              handleButton={handleButton}
             />
-            <h2 className="tip">Select Tip %</h2>
-            <div className="tip-buttons">
-              <button className="tip-button" value={5} onClick={handleButton}>
-                5%
-              </button>
-              <button className="tip-button" value={10} onClick={handleButton}>
-                10%
-              </button>
-              <button className="tip-button" value={15} onClick={handleButton}>
-                15%
-              </button>
-              <button className="tip-button" value={25} onClick={handleButton}>
-                25%
-              </button>
-              <button className="tip-button" value={50} onClick={handleButton}>
-                50%
-              </button>
-              <input
-                type="number"
-                placeholder="Custom"
-                onChange={handleInputs}
-                className="tip-button custom"
-              />
-            </div>
-            <div className="h2-container">
-              <h2 className="people">Number of People</h2>
-              <div className="error">Can't be zero</div>
-            </div>
-            <input
-              onChange={handleInputs}
-              value={people === 0 ? "" : people}
-              className="people-input"
-              placeholder="0"
-              type="number"
-            />
+            <People handleInputs={handleInputs} people={people} />
           </div>
-          <div className="stats">
-            <div className="stats-container tip-amount">
-              <p className="stats-para">
-                <span className="bold">Tip Amount</span> / person
-              </p>
-              <p className="tip-amount-value">$0</p>
-            </div>
-            <div className="stats-container total">
-              <p className="stats-para">
-                <span className="bold">Total</span> / person
-              </p>
-              <p className="total-value">$0</p>
-            </div>
-            <button className="reset">Reset</button>
-          </div>
+          <Stats reset={reset} tipAmount={tipAmount} total={total} />
         </form>
       </main>
     </>

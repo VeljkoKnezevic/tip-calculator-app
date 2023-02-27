@@ -13,8 +13,8 @@ form {
 
 h2 {
   font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 1rem;
+  line-height: 1.5rem;
   color: #5e7a7d;
 }
 
@@ -26,8 +26,8 @@ input {
   border: none;
   text-align: right;
   font-weight: 700;
-  font-size: 24px;
-  line-height: 36px;
+  font-size: 1.5rem;
+  line-height: 2.25rem;
   text-align: right;
   color: #00474b;
   margin-block-start: 6px;
@@ -58,6 +58,7 @@ input {
       background: #f3f9fa;
       color: #547878;
       border: 2px solid transparent;
+      text-align: center;
 
       &::placeholder {
         color: #547878;
@@ -79,12 +80,28 @@ input {
     font-family: "Space Mono";
     font-style: normal;
     font-weight: 700;
-    font-size: 24px;
-    line-height: 36px;
+    font-size: 1.5rem;
+    line-height: 2.25rem;
     text-align: center;
     color: #ffffff;
     padding: 6px 17.5px 6px 16.5px;
     border: none;
+
+    &:hover {
+      background: #9fe8df;
+      cursor: pointer;
+      color: #00474b;
+    }
+
+    &:active {
+      background: #9fe8df;
+      color: #00474b;
+    }
+
+    &:focus {
+      background: #9fe8df;
+      color: #00474b;
+    }
   }
 }
 
@@ -94,7 +111,6 @@ input {
   justify-content: space-between;
 
   .error {
-    margin-block-start: 32px;
     color: #e17457;
     display: none;
   }
@@ -126,14 +142,14 @@ input {
 
   &-para {
     font-weight: 700;
-    font-size: 13px;
-    line-height: 19px;
+    font-size: 0.813rem;
+    line-height: 1.188rem;
     color: #7f9d9f;
 
     .bold {
       display: block;
-      font-size: 16px;
-      line-height: 24px;
+      font-size: 1rem;
+      line-height: 1.5rem;
       color: #ffffff;
     }
   }
@@ -141,8 +157,8 @@ input {
   .tip-amount-value,
   .total-value {
     font-weight: 700;
-    font-size: 32px;
-    line-height: 47px;
+    font-size: 2rem;
+    line-height: 2.938rem;
     text-align: right;
     letter-spacing: -0.666667px;
     color: #26c2ae;
@@ -156,12 +172,23 @@ input {
     font-family: "Space Mono";
     font-style: normal;
     font-weight: 700;
-    font-size: 20px;
-    line-height: 30px;
+    font-size: 1.25rem;
+    line-height: 1.875rem;
     text-align: center;
     color: #00474b;
     padding: 9px;
     width: 100%;
+    text-transform: uppercase;
+
+    &:disabled {
+      opacity: 0.35;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background: #9fe8df;
+      color: #00474b;
+    }
   }
 }
 
@@ -190,12 +217,6 @@ input {
         }
       }
 
-      .h2-container {
-        .error {
-          margin-block-start: 40px;
-        }
-      }
-
       .people {
         margin-block-start: 40px;
       }
@@ -209,8 +230,8 @@ input {
 
       .tip-amount-value,
       .total-value {
-        font-size: 48px;
-        line-height: 71px;
+        font-size: 3rem;
+        line-height: 4.438rem;
         letter-spacing: -1px;
       }
 
