@@ -33,6 +33,12 @@ input {
   margin-block-start: 6px;
   background-repeat: no-repeat;
   background-position: top 50% left 18px;
+  border: 2px solid transparent;
+
+  &:focus {
+    outline: none !important;
+    border-color: #26c2ae;
+  }
 }
 
 .bill-input {
@@ -51,6 +57,19 @@ input {
     .custom {
       background: #f3f9fa;
       color: #547878;
+      border: 2px solid transparent;
+
+      &::placeholder {
+        color: #547878;
+      }
+
+      &:focus {
+        border-color: #26c2ae;
+      }
+
+      &:focus::placeholder {
+        color: transparent;
+      }
     }
   }
 
@@ -66,6 +85,18 @@ input {
     color: #ffffff;
     padding: 6px 17.5px 6px 16.5px;
     border: none;
+  }
+}
+
+.h2-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .error {
+    margin-block-start: 32px;
+    color: #e17457;
+    display: none;
   }
 }
 
@@ -148,6 +179,7 @@ input {
 
     .controls {
       margin: 45px 48px 48px 48px;
+      flex: 1;
 
       .tip {
         margin-block-start: 40px;
@@ -155,6 +187,12 @@ input {
         &-buttons {
           grid-template-columns: repeat(3, 1fr);
           gap: 14px;
+        }
+      }
+
+      .h2-container {
+        .error {
+          margin-block-start: 40px;
         }
       }
 
