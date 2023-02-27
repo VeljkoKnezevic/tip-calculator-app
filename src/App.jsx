@@ -38,13 +38,6 @@ function App() {
     }
 
     if (input.classList.contains("bill-input")) {
-      let errorBill = e.target.parentElement.children[0].children[1];
-
-      if (inputValue === 0) {
-        errorBill.style.display = "block";
-      } else {
-        errorBill.style.display = "none";
-      }
       setBill(inputValue);
     }
 
@@ -65,13 +58,6 @@ function App() {
 
     if (input.classList.contains("people-input")) {
       let errorPeople = e.target.parentElement.children[4].children[1];
-
-      if (inputValue === 0) {
-        errorPeople.style.display = "block";
-        errorPeople.style.marginTop = "40px";
-      } else {
-        errorPeople.style.display = "none";
-      }
 
       setPeople(inputValue);
     }

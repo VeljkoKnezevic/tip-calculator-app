@@ -1,10 +1,7 @@
 const Bill = ({ handleInputs, bill }) => {
   return (
     <>
-      <div className="h2-container">
-        <h2 className="bill">Bill</h2>
-        <p className="error">Can't be zero</p>
-      </div>
+      <h2 className="bill">Bill</h2>
 
       <input
         onChange={handleInputs}

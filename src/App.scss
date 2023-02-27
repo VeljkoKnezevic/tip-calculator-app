@@ -35,6 +35,10 @@ input {
   background-position: top 50% left 18px;
   border: 2px solid transparent;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   &:focus {
     outline: none !important;
     border-color: #26c2ae;
@@ -102,17 +106,6 @@ input {
       background: #9fe8df;
       color: #00474b;
     }
-  }
-}
-
-.h2-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  .error {
-    color: #e17457;
-    display: none;
   }
 }
 
